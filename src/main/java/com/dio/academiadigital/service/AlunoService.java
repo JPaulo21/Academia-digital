@@ -2,6 +2,7 @@ package com.dio.academiadigital.service;
 
 import com.dio.academiadigital.entity.Aluno;
 import com.dio.academiadigital.entity.AvaliacaoFisica;
+import com.dio.academiadigital.exception.AlunoNotFoundException;
 import com.dio.academiadigital.repository.AlunoRepository;
 import com.dio.academiadigital.web.dto.aluno.AlunoDTO;
 import com.dio.academiadigital.web.dto.mapper.AlunoMapper;
@@ -31,7 +32,7 @@ public class AlunoService {
     public Aluno encontrarPorId(Integer id){
         Optional<Aluno> aluno = alunoRepository.findById(id);
         return aluno.orElseThrow(() -> {
-            throw new RuntimeException("Aluno não encontrado");
+            throw new AlunoNotFoundException("Aluno não encontrado");
         });
     }
 
